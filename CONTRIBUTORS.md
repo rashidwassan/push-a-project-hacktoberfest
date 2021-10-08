@@ -12,7 +12,7 @@ Name: Alwaz Qazi
 GitHub username: Alwaz
 Favourite Language: JavaScript and Python
 
-Name: Lakindu 
+Name: Lakindu
 GitHub username: Lakinduyk
 Favourite Language: Java and Dart
 
@@ -43,3 +43,7 @@ Favourite Language: C++ and Java
 Name:Ashan Tharaka
 GitHub username:ashan-tharaka
 Favourite Language-Java
+
+Name: Saurabh Singh
+GitHub username: saurabh042
+Favorite Language: C/C++
