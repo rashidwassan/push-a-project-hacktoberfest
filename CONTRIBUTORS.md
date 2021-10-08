@@ -43,3 +43,7 @@ Favourite Language: C++ and Java
 Name:Ashan Tharaka
 GitHub username:ashan-tharaka
 Favourite Language-Java
+
+Name: Rafay Saif
+GitHub username: rafay840
+Favorite Language: C++ and Java
