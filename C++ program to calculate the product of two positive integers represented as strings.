@@ -1,0 +1,42 @@
+#include <iostream>
+#include <algorithm>
+#include <vector> 
+#include <functional>
+
+using namespace std; 
+  
+string multiply(string sn1, string sn2) {
+        const auto char_to_int = [](const char c) { return c - '0'; };
+        const auto int_to_char = [](const int i) { return i + '0'; };
+
+        vector<int> n1;
+        transform(sn1.rbegin(), sn1.rend(), back_inserter(n1), char_to_int);
+        vector<int> n2;
+        transform(sn2.rbegin(), sn2.rend(), back_inserter(n2), char_to_int);
+
+        vector<int> temp(n1.size() + n2.size());
+        for(int i = 0; i < n1.size(); ++i) {
+            for(int j = 0; j < n2.size(); ++j) {
+                temp[i + j] += n1[i] * n2[j];
+                temp[i + j + 1] += temp[i + j] / 10;
+                temp[i + j] %= 10;
+            }
+        }
+            
+        string result;
+        transform(find_if(temp.rbegin(), prev(temp.rend()),
+                         [](const int i) { return i != 0; }),
+                  temp.rend(), back_inserter(result), int_to_char);
+        return result;
+    }
+  
+int main()  
+{  
+    string sn1 = "12";
+    string sn2 = "5";    
+	cout << sn1 <<" X " << sn2 << " = " << multiply(sn1, sn2) << endl;
+    sn1 = "48";
+    sn2 = "85";    
+	cout << sn1 <<" X " << sn2 << " = " << multiply(sn1, sn2) << endl;	    
+    return 0;  
+} 
