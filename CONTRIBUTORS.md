@@ -43,3 +43,7 @@ Favourite Language: C++ and Java
 Name:Ashan Tharaka
 GitHub username:ashan-tharaka
 Favourite Language-Java
+
+Name:Divya Yadav
+GitHub username:yadadivs
+Favourite Language c++ 
