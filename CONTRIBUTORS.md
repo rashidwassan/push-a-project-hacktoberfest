@@ -43,3 +43,8 @@ Favourite Language: C++ and Java
 Name:Ashan Tharaka
 GitHub username:ashan-tharaka
 Favourite Language-Java
+
+Name:Kodali Bhavana
+GitHub username:Kodali-Bhavana
+Favourite Language-Python
+
