@@ -1,0 +1,211 @@
+<!-- Go To ->127.0.0.1/home -->
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>YDownloader</title>
+  </head>
+  <body>
+    <section id="top">
+      <div class="container-fluid">
+        <div class="row" style="background-color:#FF6347;">
+          <div class="col-sm-12 mt-2" style="font-family:'Comic Sans MS'; font-size: 55px;">
+            <center><b>Welcome to YouTube video downloader</b></center>
+          </div>
+        </div>
+      </div>
+        <div class="container">
+          <div class="row" style="margin-top:50px;">
+            <div class="col-sm-6">
+              <h4>Steps to download YouTube video :-</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5">
+              <hr>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-sm-6">
+            <ul>
+              <li>Step 1 : Copy the video URL in the text box</li>
+              <li>Step 2 : Click on the Search button</li>
+              <li>Step 3 : Choose the available formate and resolution</li>
+              <li>Step 4 : Click on Download button</li>
+            </ul>
+          </div>
+          <div class="col-sm-1">
+
+          </div>
+          <div class="col-sm-3" id="myDiv">
+            <div aria-live="polite" aria-atomic="true">
+              <div class="toast" >
+                <div class="toast-header">
+                  <strong class="mr-auto">Notifications</strong>
+                  <small>1 seconds ago</small>
+                  <button id="hide"type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="toast-body">
+                  <br>
+                  Downloading starts ...
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3" id="myDiv2">
+            <div aria-live="polite" aria-atomic="true">
+              <div class="toast" >
+                <div class="toast-header">
+                  <strong class="mr-auto">Notifications</strong>
+                  <small>1 seconds ago</small>
+                  <button id="hide2"type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="toast-body">
+                  <br>
+                  {% if msg %}
+                  {{msg}}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-sm-5">
+              <hr>
+            </div>
+          </div>
+          <form class="" action="/home/download/" method="post">
+          <div class="row" style="margin-top:20px;">
+
+              {% csrf_token %}
+              <div class="col-sm-6">
+                {% if video_url %}
+                <input class="form-control" type="search" name = "video_url" placeholder="Search" aria-label="Search" value={{video_url}}>
+                {% else %}
+                <input class="form-control" type="search" name = "video_url" placeholder="Search" aria-label="Search">
+                {% endif %}
+              </div>
+              <div class="col-sm-2">
+                <button class="btn btn-outline-success" type="submit" style="margin-left:-20px;">Search</button>
+              </div>
+
+        </div>
+        </form>
+        <form class="" action="/home/downloading/" method="post">
+          {% csrf_token %}
+        <div class="row mt-3 section">
+          <div class="col-sm-3">
+            {% if thumbnail_url %}
+            <img src="{{thumbnail_url}}" alt="" width="100%">
+            <p id="title" style="margin-top:5px;"><b>{{title}}</b></p>
+            {% endif %}
+          </div>
+          <div class="col-sm-9 section">
+            <div class="row">
+              <div class="col-sm-5">
+                <h5>Select Format</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-2">
+                <label><input type="radio" name="formatRadio" value="audio"> Audio</label>
+              </div>
+              <div class="col-sm-2">
+                <label><input type="radio" name="formatRadio" value="video"> Video</label>
+              </div>
+            </div>
+            <div class="row">
+              <br>
+            </div>
+            <div class="row video">
+                <div class="col-sm-5">
+                  <h5>Select Video Quality</h5>
+                </div>
+            </div>
+            <div class="row video">
+                <div class="col-sm-2">
+                  <label><input type="radio" name="qualityRadio" value="1080p">High</label>
+                </div>
+                <div class="col-sm-2">
+                  <label><input type="radio" name="qualityRadio" value="720p">Medium</label>
+                </div>
+                <div class="col-sm-2">
+                  <label><input type="radio" name="qualityRadio" value="360p">Low</label>
+                </div>
+
+            </div>
+            <div class="row">
+              <br>
+            </div>
+            <div class="row">
+              <input type="hidden" name="video_url_d" value={{video_url}}>
+            </div>
+            <div class="row section">
+              <div class="col-sm-3 ml-4">
+                <button class="btn download" id="show"><i class="fa fa-download"></i> Download</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </section>
+  </body>
+  <script>
+$(".video").hide()
+$("#myDiv").hide();
+$("#myDiv2").hide();
+console.log("{{thumbnail_url}}");
+if($('#title').html() === undefined)
+{
+    $(".section").hide();
+}
+$(document).ready(function(){
+  $("#hide2").click(function(){
+    $("#myDiv2").hide();
+  });
+});
+if("{{msg}}".length !=0)
+{
+  $("#myDiv2").show();
+}
+$(document).ready(function(){
+  $("#hide").click(function(){
+    $("#myDiv").hide();
+  });
+  $("#show").click(function(){
+    $("#myDiv").show();
+  });
+});
+// $('div.section:empty').hide();
+$(document).ready(function(){
+    $('input[type="radio"]').click(function(){
+        var inputValue = $(this).attr("value");
+        if(inputValue == "audio"){
+          // var targetBox = $("." + inputValue);
+          $(".video").hide();
+          // $(".download").hide();
+        }
+        else{
+          var targetBox = $("." + inputValue);
+          // $(".box").not(targetBox).hide();
+          $(targetBox).show();
+        }
+    });
+});
+</script>
+</html>
