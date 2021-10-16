@@ -1,4 +1,6 @@
 # pushaproject-Hacktoberfest21
+# Update: Tthis project has been excluded from Hacktoberfest 2021.
+
 
 <p align="center">
     <a href="https://hacktoberfest.digitalocean.com/" target="_blank">
