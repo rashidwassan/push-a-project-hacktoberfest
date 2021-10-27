@@ -43,3 +43,7 @@ Favourite Language: C++ and Java
 Name:Ashan Tharaka
 GitHub username:ashan-tharaka
 Favourite Language-Java
+
+Name: Noor Fatima
+Github username: Noorfatimadev
+Favourite Language: C++
